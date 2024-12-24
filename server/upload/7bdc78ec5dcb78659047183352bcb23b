@@ -1,0 +1,102 @@
+
+
+class Recursion_Practice {
+    public static void main(String[] args) {
+        int arr[] = {2,3,5,7,8};
+        int tar = 10;
+        boolean vis[] = {false,false,false,false,false};
+//        int ans = combi_singCoin_sub(arr,tar,0," ");
+//        System.out.println(ans);
+//        int ans1 = combi_infiCoin_sub(arr,tar,0," ");
+//        System.out.println(ans1);
+//        int ans3 = permi_infiniteCoin_sub(arr,tar,0," ");
+//        System.out.println(ans3);
+        int ans2 = permi_finiteCoin_sub(arr,tar,0," ",vis);
+        System.out.println(ans2);
+
+
+
+    }
+
+    private static int permi_finiteCoin_sub(int[] arr, int tar, int curr, String asf , boolean vis[]) {
+        //if(tar==0 || curr>arr.length-1) return tar==0?1:0;
+        if(tar == 0){
+            //asf = arr[curr]+ " ";
+            System.out.println(asf);
+            return 1;
+        }
+        if(curr>arr.length-1){
+            return 0;
+        }
+
+        if(!vis[curr]){
+            if(arr[curr] <=tar){
+                vis[curr] =!vis[curr];
+                int pick = permi_finiteCoin_sub(arr,tar-arr[curr],0,asf+arr[curr]+" " , vis);
+                int notpick = permi_finiteCoin_sub(arr,tar,curr+1,asf, vis);
+                vis[curr] = !vis[curr];
+                return pick+notpick;
+            }
+        }
+        return permi_finiteCoin_sub(arr,tar,curr+1,asf, vis);
+    }
+
+    private static int permi_infiniteCoin_sub(int[] arr, int tar, int curr, String asf) {
+        //if(tar==0 || curr>arr.length-1) return tar==0?1:0;
+        if(tar == 0){
+            //asf = arr[curr]+ " ";
+            System.out.println(asf);
+            return 1;
+        }
+        if(curr>arr.length-1){
+            return 0;
+        }
+        if(arr[curr] <=tar){
+            int pick = permi_infiniteCoin_sub(arr,tar-arr[curr],0,asf+arr[curr]+" ");
+            int notpick = permi_infiniteCoin_sub(arr,tar,curr+1,asf);
+            return pick+notpick;
+        }else {
+            return permi_infiniteCoin_sub(arr,tar,curr+1,asf);
+        }
+    }
+
+
+    private static int combi_infiCoin_sub(int[] arr, int tar, int curr,String asf) {
+        //if(tar==0 || curr>arr.length-1) return tar==0?1:0;
+        if(tar == 0){
+            //asf = arr[curr]+ " ";
+            System.out.println(asf);
+            return 1;
+        }
+        if(curr>arr.length-1){
+            return 0;
+        }
+        if(arr[curr] <=tar){
+            int pick = combi_infiCoin_sub(arr,tar-arr[curr],curr,asf+arr[curr]+" ");
+            int notpick = combi_infiCoin_sub(arr,tar,curr+1,asf);
+            return pick+notpick;
+        }else {
+            return combi_infiCoin_sub(arr,tar,curr+1,asf);
+        }
+    }
+
+    private static int combi_singCoin_sub(int[] arr, int tar, int curr,String asf) {
+        //if(tar==0 || curr>arr.length-1) return tar==0?1:0;
+        if(tar == 0){
+            //asf = arr[curr]+ " ";
+            System.out.println(asf);
+            return 1;
+        }
+        if(curr>arr.length-1){
+            return 0;
+        }
+        if(arr[curr] <=tar){
+            int pick = combi_singCoin_sub(arr,tar-arr[curr],curr+1,asf+arr[curr]+" ");
+            int notpick = combi_singCoin_sub(arr,tar,curr+1,asf);
+            return pick+notpick;
+        }else {
+            return combi_singCoin_sub(arr,tar,curr+1,asf);
+        }
+    }
+
+}
