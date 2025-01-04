@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 
 
-const MONGO_DB_URL = 'mongodb://localhost:27017/file_sharing';
+// const MONGO_DB_URL = 'mongodb://localhost:27017/file_sharing';
+const MONGO_DB_URL = 'mongodb+srv://admin:fileToShare@cluster0.fqydn.mongodb.net/file_sharing?retryWrites=true&w=majority&appName=Cluster0';
 export const dbConnection = async()=>{
     try{
         await mongoose.connect(MONGO_DB_URL,{

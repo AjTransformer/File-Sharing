@@ -1,16 +1,25 @@
 import File from "../model/file.js";
+import fs from 'fs';
 
 
 export const uploadImage = async (request,response)=>{
     // return response.status(200).json({msg: 'Hello'})
     try{
-        // console.log(request.file);
+        console.log(request.file.path);
         const fileObj = {
             path:request.file.path,
             name:request.file.originalname,
         }
         const res = await File.create(fileObj);
-        console.log("response after saving data in db ",res);
+
+        fs.unlink(request.file.path , (err)=>{
+            if(err){
+                console.error("Error deleting file:", err.message);
+            }else{
+                console.log("Temporary file deleted:", request.file.path);
+            }
+        })
+        // console.log("response after saving data in db ",res);
         response.status(200).json({path: `http://localhost:8080/shared_files/${res._id}`})
     }catch(error){
         console.log("Error, while doing db operation ",error.message);

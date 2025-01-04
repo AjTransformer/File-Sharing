@@ -16,13 +16,13 @@ function App() {
   useEffect(()=>{
     const onFileUpload = async ()=>{
       if(file){
-        console.log(file);
+        // console.log(file);
         const data = new FormData();
         data.append("name",file.name);
         data.append("file",file);
 
         let response = await uploadFile(data);
-        console.log(response.path);
+        console.log(response);
         setResult(response.path);
       }
     }
