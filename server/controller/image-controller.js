@@ -22,7 +22,8 @@ export const uploadImage = async (request,response)=>{
         // console.log("response after saving data in db ",res);
         response.status(200).json({path: `https://file-sharing-fchi.onrender.com/shared_files/${res._id}`})
     }catch(error){
-        console.log("Error, while doing db operation ",error.message);
+        console.log("Error, while doing db operation. ",error.message);
+        alert("Error, while doing db operation.");
         response.status(500).json({error: error.message});
     }
 }
@@ -42,6 +43,7 @@ export const downloadImage = async(request,response)=>{
         response.download(file.path , file.name);
     }catch(error){
         console.log("Error while downloading image ",error.message);
+        alert("Error while downloading image ");
         response.status(500).json({error:error.message});
     }
 }

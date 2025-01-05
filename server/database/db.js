@@ -12,5 +12,6 @@ export const dbConnection = async()=>{
         console.log("DB Connection Successfull");
     }catch(error){
         console.log("Error while making connection with Db ",error.message);
+        alert("Error while making connection with Db ");
     }
 }
