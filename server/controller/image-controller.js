@@ -20,7 +20,7 @@ export const uploadImage = async (request,response)=>{
         //     }
         // })
         // console.log("response after saving data in db ",res);
-        response.status(200).json({path: `http://localhost:8080/shared_files/${res._id}`})
+        response.status(200).json({path: `https://file-sharing-fchi.onrender.com/shared_files/${res._id}`})
     }catch(error){
         console.log("Error, while doing db operation ",error.message);
         response.status(500).json({error: error.message});
