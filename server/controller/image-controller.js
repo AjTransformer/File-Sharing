@@ -1,5 +1,5 @@
 import File from "../model/file.js";
-import fs from 'fs';
+// import fs from 'fs';
 
 
 export const uploadImage = async (request,response)=>{
@@ -12,13 +12,13 @@ export const uploadImage = async (request,response)=>{
         }
         const res = await File.create(fileObj);
 
-        fs.unlink(request.file.path , (err)=>{
-            if(err){
-                console.error("Error deleting file:", err.message);
-            }else{
-                console.log("Temporary file deleted:", request.file.path);
-            }
-        })
+        // fs.unlink(request.file.path , (err)=>{
+        //     if(err){
+        //         console.error("Error deleting file:", err.message);
+        //     }else{
+        //         console.log("Temporary file deleted:", request.file.path);
+        //     }
+        // })
         // console.log("response after saving data in db ",res);
         response.status(200).json({path: `http://localhost:8080/shared_files/${res._id}`})
     }catch(error){
