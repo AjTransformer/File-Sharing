@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        NODE_VERSION = '20.10.0' // Specify your Node.js version
-    }
     stages {
         stage('Checkout Code') {
             steps {
@@ -11,41 +8,29 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                script {
-                    nodejs(NODE_VERSION) {
-                        sh 'npm install'
-                    }
-                }
+                sh 'npm install'
             }
         }
         stage('Run Tests') {
             steps {
-                script {
-                    nodejs(NODE_VERSION) {
-                        sh 'npm test'
-                    }
-                }
+                sh 'npm test'
             }
         }
         stage('Build Frontend') {
             steps {
-                script {
-                    nodejs(NODE_VERSION) {
-                        sh 'npm run build'
-                    }
-                }
+                sh 'npm run build'
             }
         }
         stage('Deploy Backend') {
             steps {
                 echo 'Deploying backend...'
-                // Add deployment steps for the backend
+                // Add deployment commands for backend
             }
         }
         stage('Deploy Frontend') {
             steps {
                 echo 'Deploying frontend...'
-                // Add deployment steps for the frontend
+                // Add deployment commands for frontend
             }
         }
     }
